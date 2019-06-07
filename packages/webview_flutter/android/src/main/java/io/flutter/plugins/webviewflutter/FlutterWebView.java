@@ -15,6 +15,7 @@ import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.JsResult;
+import android.webkit.JsPromptResult;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -63,7 +64,11 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
       new WebChromeClient() {
         @Override
         public boolean onJsAlert(WebView view, String url, final String message, JsResult result) {
-                return false;
+          return false;
+        }
+        @Override
+        public boolean onJsPrompt(WebView view, String url, final String message, String defaultValue, JsPromptResult result) {
+          return false;
         }
       }
     );

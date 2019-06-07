@@ -49,13 +49,20 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     webView.getSettings().setLoadWithOverviewMode(true);
     webView.getSettings().setUseWideViewPort(true);
 
+    webView.getSettings().setBuiltInZoomControls(true);
+    webView.getSettings().setSupportZoom(true);
+    webView.getSettings().setSaveFormData(false);
+    webView.getSettings().setSavePassword(false);
+    webView.getSettings().setGeolocationEnabled(true);
+    webView.getSettings().setDatabaseEnabled(true);
+    String databasePath = getApplicationContext().getDir("database", MODE_PRIVATE).getPath();
+    webView.getSettings().setDatabasePath(databasePath);
+    webView.getSettings().setGeolocationDatabasePath(databasePath);
+    // Enable DOM storage
+    webView.getSettings().setDomStorageEnabled(true);
+
     webView.setWebChromeClient(
         new WebChromeClient() {
-          @Override
-          public boolean onJsAlert(WebView view, String url, final String message, JsResult result) {
-                  return false;
-          }
-
           @Override
           public void onGeolocationPermissionsShowPrompt(
               String origin, GeolocationPermissions.Callback callback) {

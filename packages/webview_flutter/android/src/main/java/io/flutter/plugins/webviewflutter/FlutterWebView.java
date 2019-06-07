@@ -9,9 +9,10 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.GeolocationPermissions.Callback;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
-import android.webkit.WebChromeClient;
 import android.webkit.WebViewClient;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
@@ -211,7 +212,7 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
         case "geolocationEnable":
           final boolean geolocationEnable = (boolean) settings.get(key);
 
-          webView.setGeolocationEnabled(geolocationEnable);
+          webView.getSettings().setGeolocationEnabled(geolocationEnable);
 
           if (geolocationEnable) {
             webView.setWebChromeClient(

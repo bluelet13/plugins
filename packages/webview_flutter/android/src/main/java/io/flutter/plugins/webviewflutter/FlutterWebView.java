@@ -47,6 +47,11 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     webView.setWebChromeClient(
         new WebChromeClient() {
           @Override
+          public boolean onJsAlert(WebView view, String url, final String message, JsResult result) {
+                  return false;
+          }
+          
+          @Override
           public void onGeolocationPermissionsShowPrompt(
               String origin, GeolocationPermissions.Callback callback) {
             callback.invoke(origin, true, false);

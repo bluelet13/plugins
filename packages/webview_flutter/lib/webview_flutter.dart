@@ -121,6 +121,7 @@ class WebView extends StatefulWidget {
     this.gestureRecognizers,
     this.onPageFinished,
     this.debuggingEnabled = false,
+    this.geolocationEnabled,
   })  : assert(javascriptMode != null),
         super(key: key);
 
@@ -254,6 +255,9 @@ class WebView extends StatefulWidget {
   ///
   /// By default `debuggingEnabled` is false.
   final bool debuggingEnabled;
+
+  /// Controls whether WebView geolocation is enabled.
+  final bool geolocationEnabled;
 
   @override
   State<StatefulWidget> createState() => _WebViewState();

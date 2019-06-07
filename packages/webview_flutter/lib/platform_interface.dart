@@ -163,6 +163,7 @@ class WebSettings {
     this.javascriptMode,
     this.hasNavigationDelegate,
     this.debuggingEnabled,
+    this.geolocationEnable,
   });
 
   /// The JavaScript execution mode to be used by the webview.
@@ -175,6 +176,9 @@ class WebSettings {
   ///
   /// See also: [WebView.debuggingEnabled].
   final bool debuggingEnabled;
+
+  /// Whether to enable the webview geolocation.
+  final bool geolocationEnable;
 
   @override
   String toString() {

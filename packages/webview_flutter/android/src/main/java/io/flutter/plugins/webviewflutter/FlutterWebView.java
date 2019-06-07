@@ -10,7 +10,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.GeolocationPermissions.Callback;
+import android.webkit.GeolocationPermissions;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;

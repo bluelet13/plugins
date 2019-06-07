@@ -14,6 +14,7 @@ import android.webkit.GeolocationPermissions;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.JsResult;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -57,6 +58,15 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     webView.getSettings().setDatabaseEnabled(true);
     // Enable DOM storage
     webView.getSettings().setDomStorageEnabled(true);
+
+    webView.setWebChromeClient(
+      new WebChromeClient() {
+        @Override
+        public boolean onJsAlert(WebView view, String url, final String message, JsResult result) {
+                return false;
+        }
+      }
+    );
 
     webView.setWebChromeClient(
         new WebChromeClient() {
@@ -236,12 +246,6 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
           webView.setWebContentsDebuggingEnabled(debuggingEnabled);
           break;
         case "geolocationEnabled":
-          final boolean geolocationEnabled = (boolean) settings.get(key);
-
-          webView.getSettings().setGeolocationEnabled(geolocationEnabled);
-
-          if (geolocationEnabled) {
-          }
           break;
         default:
           throw new IllegalArgumentException("Unknown WebView setting: " + key);

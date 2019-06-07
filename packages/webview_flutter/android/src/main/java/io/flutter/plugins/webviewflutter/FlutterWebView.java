@@ -52,6 +52,18 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
       String url = (String) params.get("initialUrl");
       webView.loadUrl(url);
     }
+
+    webView.setWebChromeClient(
+        new WebChromeClient() {
+          @Override
+          public void onGeolocationPermissionsShowPrompt(
+              String origin, GeolocationPermissions.Callback callback) {
+            callback.invoke(origin, true, false);
+          }
+
+          @Override
+          public void onGeolocationPermissionsHidePrompt() {}
+        });
   }
 
   @Override
@@ -215,17 +227,6 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
           webView.getSettings().setGeolocationEnabled(geolocationEnabled);
 
           if (geolocationEnabled) {
-            webView.setWebChromeClient(
-                new WebChromeClient() {
-                  @Override
-                  public void onGeolocationPermissionsShowPrompt(
-                      String origin, GeolocationPermissions.Callback callback) {
-                    callback.invoke(origin, true, false);
-                  }
-
-                  @Override
-                  public void onGeolocationPermissionsHidePrompt() {}
-                });
           }
           break;
         default:

@@ -44,15 +44,6 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     flutterWebViewClient = new FlutterWebViewClient(methodChannel);
     applySettings((Map<String, Object>) params.get("settings"));
 
-    if (params.containsKey(JS_CHANNEL_NAMES_FIELD)) {
-      registerJavaScriptChannelNames((List<String>) params.get(JS_CHANNEL_NAMES_FIELD));
-    }
-
-    if (params.containsKey("initialUrl")) {
-      String url = (String) params.get("initialUrl");
-      webView.loadUrl(url);
-    }
-
     webView.setWebChromeClient(
         new WebChromeClient() {
           @Override
@@ -64,6 +55,15 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
           @Override
           public void onGeolocationPermissionsHidePrompt() {}
         });
+
+    if (params.containsKey(JS_CHANNEL_NAMES_FIELD)) {
+      registerJavaScriptChannelNames((List<String>) params.get(JS_CHANNEL_NAMES_FIELD));
+    }
+
+    if (params.containsKey("initialUrl")) {
+      String url = (String) params.get("initialUrl");
+      webView.loadUrl(url);
+    }
   }
 
   @Override

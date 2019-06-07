@@ -209,12 +209,12 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
 
           webView.setWebContentsDebuggingEnabled(debuggingEnabled);
           break;
-        case "geolocationEnable":
-          final boolean geolocationEnable = (boolean) settings.get(key);
+        case "geolocationEnabled":
+          final boolean geolocationEnabled = (boolean) settings.get(key);
 
-          webView.getSettings().setGeolocationEnabled(geolocationEnable);
+          webView.getSettings().setGeolocationEnabled(geolocationEnabled);
 
-          if (geolocationEnable) {
+          if (geolocationEnabled) {
             webView.setWebChromeClient(
                 new WebChromeClient() {
                   @Override

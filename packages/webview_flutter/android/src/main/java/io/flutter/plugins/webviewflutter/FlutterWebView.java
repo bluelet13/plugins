@@ -44,13 +44,18 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     flutterWebViewClient = new FlutterWebViewClient(methodChannel);
     applySettings((Map<String, Object>) params.get("settings"));
 
+    webView.setVerticalScrollbarOverlay(true);
+    webView.setHorizontalScrollBarEnabled(false);
+    webView.getSettings().setLoadWithOverviewMode(true);
+    webView.getSettings().setUseWideViewPort(true);
+
     webView.setWebChromeClient(
         new WebChromeClient() {
           @Override
           public boolean onJsAlert(WebView view, String url, final String message, JsResult result) {
                   return false;
           }
-          
+
           @Override
           public void onGeolocationPermissionsShowPrompt(
               String origin, GeolocationPermissions.Callback callback) {

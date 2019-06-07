@@ -55,9 +55,6 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     webView.getSettings().setSavePassword(false);
     webView.getSettings().setGeolocationEnabled(true);
     webView.getSettings().setDatabaseEnabled(true);
-    String databasePath = getApplicationContext().getDir("database", MODE_PRIVATE).getPath();
-    webView.getSettings().setDatabasePath(databasePath);
-    webView.getSettings().setGeolocationDatabasePath(databasePath);
     // Enable DOM storage
     webView.getSettings().setDomStorageEnabled(true);
 
